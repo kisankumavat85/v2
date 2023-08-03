@@ -2,26 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --color-primary: #eab2a0;
+    --color-bg: #2d2c2c;
+    --color-line: #4e4545;
+    --color-secondary: #212121;
+    --color-gary-1: #e0e0e0;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--color-secondary);
+  border-radius: 100vw;
+  margin-block: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-line);
+  border-radius: 100vw;
+}
+
+/* Cusrom scrollbar for Firefox browser */
+@supports (scrollbar-color: var(--color-secondary) var(--color-line)) {
+  * {
+    scrollbar-color: var(--color-secondary) var(--color-line);
+    scrollbar-width: thin;
+  }
 }
