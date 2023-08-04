@@ -10,7 +10,7 @@ const Footer = () => {
       role="navigation"
     >
       <div className="flex flex-col items-center gap-4 w-full p-8">
-        <div className="">
+        <div>
           {
             <ul className="flex gap-8">
               {navLinks.map((link) => {
@@ -44,9 +44,7 @@ const Footer = () => {
           </ul>
         </div>
         <div className="group flex items-center text-white opacity-60 hover:opacity-100">
-          <a className="" href="mailto:kisankumavat85@gmail.com">
-            kisankumavat85@gmail.com
-          </a>
+          <a href="mailto:kisankumavat85@gmail.com">kisankumavat85@gmail.com</a>
         </div>
       </div>
     </footer>

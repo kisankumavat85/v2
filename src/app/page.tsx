@@ -1,4 +1,5 @@
 import Articles from "@/components/Articles";
+import { H1, P } from "@/components/UI/Typography";
 import { socialLinks } from "@/constants";
 
 // Removes email href
@@ -8,18 +9,18 @@ export default function Home() {
   return (
     <div>
       <section className="mb-14">
-        <h1 className="text-6xl text-primary font-bold mb-4">Kisan Kumavat</h1>
-        <p className="mb-4">
+        <H1>Kisan Kumavat</H1>
+        <P>
           Hello there! I am Kisan, a passionate Software engineer from India
           with a flair for crafting immersive web experiences.
-        </p>
-        <p className="mb-4">
+        </P>
+        <P>
           I have done engineering degree in IT, and have 2 years of industry
           experience building web applications. I specialize in React, and have
           experience working with Typescript, Next.js, Remix.js and Express.js.
-        </p>
+        </P>
         <div className="flex items-center gap-1">
-          <span className="">Social Links:</span>
+          <span>Social Links:</span>
           <div role="group" className="flex gap-1">
             {socialLinks.map((link, i) => (
               <a
@@ -38,7 +39,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <Articles sectionTitle="Recent articles" />
+      <Articles sectionTitle="Current articles" />
     </div>
   );
 }
