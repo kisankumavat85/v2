@@ -1,11 +1,15 @@
-import Articles from "@/components/Articles";
+import Cards from "@/components/Cards";
+import Articles from "@/components/Cards";
 import { H1, P } from "@/components/UI/Typography";
 import { socialLinks } from "@/constants";
+import { getAllPostsMetadata } from "@/utils";
 
 // Removes email href
 socialLinks.pop();
 
-export default function Home() {
+export default async function Home() {
+  const posts = await getAllPostsMetadata();
+
   return (
     <div>
       <section className="mb-14">
@@ -39,7 +43,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <Articles sectionTitle="Current articles" />
+      <Cards posts={posts} sectionTitle="Current articles" />
     </div>
   );
 }

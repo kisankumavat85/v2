@@ -4,11 +4,60 @@
 
 @layer base {
   :root {
-    --color-primary: #eab2a0;
-    --color-bg: #2d2c2c;
-    --color-line: #4e4545;
+    --color-primary: hsl(28, 100%, 58%);
+    --color-primary-2: hsl(28, 100%, 30%);
+    --color-secondary: hsl(0, 0%, 0%);
+    --color-bg: hsl(0, 0%, 5%);
+    --color-bg-hover: hsl(0, 0%, 10%);
+    --color-line: hsl(0, 0%, 20%);
+  }
+
+  .lavender {
+    --color-primary: hsl(301, 100%, 82%);
+    --color-secondary: rgb(25, 24, 37);
+    --color-bg: hsl(245, 21%, 17%);
+    --color-bg-hover: hsl(245, 21%, 20%);
+    --color-line: hsl(245, 21%, 30%);
+  }
+
+  .charleston-green {
+    --color-primary: hsl(43, 100%, 94%);
+    --color-secondary: #28292a;
+    --color-bg: hsl(210, 3%, 22%);
+    --color-bg-hover: hsl(210, 3%, 28%);
+    --color-line: hsl(210, 3%, 33%);
+  }
+
+  .raisin-black {
+    --color-primary: hsl(15, 64%, 77%);
     --color-secondary: #212121;
-    --color-gary-1: #e0e0e0;
+    --color-bg: hsl(0, 0%, 17%);
+    --color-bg-hover: hsl(0, 0%, 19%);
+    --color-line: hsl(0, 0%, 27%);
+  }
+
+  .charcoal-theme {
+    --color-primary: hsl(0, 50%, 90%);
+    --color-secondary: hsl(221, 24%, 28%);
+    --color-bg: hsl(221, 24%, 32%);
+    --color-bg-hover: hsl(221, 24%, 38%);
+    --color-line: hsl(221, 24%, 42%);
+  }
+
+  .theme-x {
+    --color-primary: hsl(19, 100%, 74%);
+    --color-secondary: hsl(330, 100%, 12%);
+    --color-bg: hsl(330, 100%, 16%);
+    --color-bg-hover: hsl(330, 100%, 18%);
+    --color-line: hsl(330, 100%, 30%);
+  }
+
+  .crayola-yellow {
+    --color-primary: rgb(247, 232, 135);
+    --color-secondary: hsl(230, 32%, 21%);
+    --color-bg: hsl(230, 32%, 26%);
+    --color-bg-hover: hsl(230, 32%, 36%);
+    --color-line: hsl(230, 32%, 40%);
   }
 }
 

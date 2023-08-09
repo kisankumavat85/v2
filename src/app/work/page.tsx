@@ -49,7 +49,7 @@ const WorkPage: FC<Props> = () => {
                     {e.startDate} - {e.endDate}
                   </p>
                 </div>
-                <p className="mb-4">{e.description}</p>
+                <P>{e.description}</P>
                 <div>
                   {e.tech.map((t) => (
                     <Chip key={t} label={t} />

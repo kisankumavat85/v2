@@ -17,5 +17,5 @@ export const H2: FC<Props> = (props) => {
 };
 
 export const P: FC<Props> = (props) => {
-  return <p className="mb-4">{props.children}</p>;
+  return <p className="mb-4 font-extralight opacity-80">{props.children}</p>;
 };

@@ -13,9 +13,10 @@ module.exports = {
       },
       colors: {
         primary: "var(--color-primary)",
+        "primary-2": "var(--color-primary-2)",
         secondary: "var(--color-secondary)",
-        "gray-1": "var(--color-gary-1)",
         bg: "var(--color-bg)",
+        "bg-hover": "var(--color-bg-hover)",
         line: "var(--color-line)",
       },
     },

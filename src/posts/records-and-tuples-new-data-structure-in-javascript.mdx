@@ -1,0 +1,100 @@
+---
+title: "Records and Tuples – New data structure in JavaScript"
+date: "May 27, 2022"
+excerpt: "In this article, we are going to know/learn about a new primitive data structure Record and Tuple."
+coverImage: "/images/posts/records-and-tuples-new-data-structure-in-javascript.webp"
+readingTime: "2"
+isFeatured: true
+isCompleted: true
+---
+
+In this article, we are going to know/learn about a new primitive data structure Record and Tuple. These data structures are not available in official JavaScript because these are just proposals to add in Javascript.
+
+Both Records and Tuples are primitive data types and we can only use primitive data types to create Records and Tuples, So we can not use Objects and Arrays inside these data structures. Let’s take a close look at Record and Tuple.
+
+## Records
+
+You could think of Record as Object because the syntax of Record is identical to Object, We just add “#” before curly braces As shown in code. We can also access keys of Record as we would with Objects.
+
+```javascript
+const user = #{
+  name: "Adam",
+  age: 21,
+};
+
+// We can access keys like Object
+console.log(user.name);
+console.log(user.age);
+```
+
+We can not assign Array or Object to the key of Record.
+
+```javascript
+// This is not valid for Record
+
+const user = #{
+  name: "Adam",
+  age: 21,
+  hobbies: ["Reading", "Playing", "Singing"],
+};
+```
+
+We can use a spread operator with Records, And we can also use Object functions with Records.
+
+```javascript
+const user = #{
+  name: "Adam",
+  age: 21,
+};
+
+// Record destructuring is valid
+const newUser = { ...user };
+
+// Object functions works with Record
+console.log(Object.key(user)); //Output: ['name', 'age']
+```
+
+## Tuples
+
+And yes, You could think of Tuples as Arrays because the syntax of Tuple is also identical to Array, We just add “#” before square brackets As shown in code. We can also access keys of Record as we would with Objects.
+
+```javascript
+const users = #["Ram", "Shyam", "Gopal"];
+
+// We can access index like Array
+console.log(users[1]); // 'Shyam'
+console.log(users[2]); // 'Gopal'
+```
+
+Here is also the same condition as Record that we can not assign Array or Object to the key of Record.
+
+```javascript
+// This is not valid for Tuple
+
+const user = #[
+  {
+    name: "Ram",
+    age: 21,
+  },
+  {
+    name: "Shyam",
+    age: 22,
+  },
+];
+```
+
+We can use a spread operator with Tuple, And we can also use Array functions with Tuples.
+
+```javascript
+const users = ["Ram", "Shyam", "Gopal"];
+
+const newUsers = [...users];
+console.log(newUsers); // ['Ram', 'Shyam', 'Gopal']
+
+// Array functions works with Tuple
+console.log(users.map((user) => user + "abc"));
+// Output: ['Ram abc', 'Shyam abc', 'Gopal abc']
+```
+
+If you liked this post or you find any mistake in this post do let me know
+on Twitter or LinkedIn. I would love to connect with you!
