@@ -1,12 +1,15 @@
 import { FC } from "react";
 
 import SearchInput from "@/components/UI/SearchInput";
-import Articles from "@/components/Articles";
+import Cards from "@/components/Cards";
 import { H1, P } from "@/components/UI/Typography";
+import { getAllPostsMetadata } from "@/utils";
 
 interface Props {}
 
-const BlogPage: FC<Props> = () => {
+const BlogPage: FC<Props> = async () => {
+  const posts = await getAllPostsMetadata();
+
   return (
     <div>
       <section className="mb-14">
@@ -20,7 +23,7 @@ const BlogPage: FC<Props> = () => {
           <SearchInput />
         </div>
       </section>
-      <Articles sectionTitle="Recent articles" />
+      <Cards sectionTitle="Recent articles" posts={posts} />
     </div>
   );
 };

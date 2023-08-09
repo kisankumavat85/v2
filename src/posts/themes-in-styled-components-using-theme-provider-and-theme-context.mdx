@@ -1,0 +1,196 @@
+---
+title: "Themes in Styled Components using ThemeProvider and ThemeContext"
+date: "June 30, 2022"
+excerpt: "CSS in JS is a very popular way to write a CSS for Single page application. So in this post, We will use the styled-components library to create a simple app with themes (dark/light)."
+coverImage: "/images/posts/styled-components.jpeg"
+readingTime: 5
+isFeatured: true
+isCompleted: true
+---
+
+CSS in JS is a very popular way to write a CSS for Single page application. So in this post, We will use the styled-components library to create a simple app with themes (dark/light).
+
+[Demo App link](https://codesandbox.io/s/theme-styled-components-uk9tvt?file=/src/index.js:0-261)
+
+This is what our folder structure will look like.
+
+```
+|_ src
+  |_ App.js
+  |_ index.js
+  |_ pages
+    |_ Home.jsx
+  |_ styles
+    |_ global.style.js
+    |_ home.style.js
+```
+
+Let's first create themes inside global.style.js file and export it to use it later.
+
+```javascript
+const lightTheme = {
+  backgroundColor: "#fff",
+  color: "#000",
+};
+
+const darkTheme = {
+  backgroundColor: "#000",
+  color: "#fff",
+};
+
+export const themes = {
+  light: lightTheme,
+  dark: darkTheme,
+};
+```
+
+Now let's create GlobalStyles and export as default.
+
+```javascript
+const GlobalStyle = createGlobalStyle`
+  * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+  }
+  body{
+    background: ${(props) => props.theme.backgroundColor};
+  }
+  a {
+    text-decoration: none;
+  }
+`;
+
+export default GlobalStyle;
+```
+
+As you can see for the background of the body we have passed the function for the theme prop, This theme is provided by ThemeProvider of styled components. We will see ThemeProvider in action later in this post.
+
+So, now our global.style.js looks like this
+
+```javascript
+import { createGlobalStyle } from "styled-components";
+
+const lightTheme = {
+  backgroundColor: "#fff",
+  color: "#000",
+};
+
+const darkTheme = {
+  backgroundColor: "#000",
+  color: "#fff",
+};
+
+export const themes = {
+  light: lightTheme,
+  dark: darkTheme,
+};
+
+const GlobalStyle = createGlobalStyle`
+  * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+  }
+  body{
+    background: ${(props) => props.theme.backgroundColor};
+  }
+  a {
+    text-decoration: none;
+  }
+`;
+
+export default GlobalStyle;
+```
+
+Now, This is what our App.js file looks like, and let's understand things one by one.
+
+```javascript
+import GlobalStyle, { themes } from "./styles/global.style";
+import Home from "./pages/Home";
+import { ThemeContext, ThemeProvider } from "styled-components";
+import { useState } from "react";
+
+export default function App() {
+  const [theme, setTheme] = useState("light");
+
+  return (
+    <>
+      <ThemeContext.Provider value={{ theme, setTheme }}>
+        <ThemeProvider theme={theme === "light" ? themes.light : themes.dark}>
+          <GlobalStyle />
+          <Home />
+        </ThemeProvider>
+      </ThemeContext.Provider>
+    </>
+  );
+}
+```
+
+ThemeContext: Here we use ThemeContext for sharing theme state and setTheme function across the app so that we can use them to change the theme wherever we want.
+
+ThemeProvider: It is the provider component that provides theme object across its child components. We can access the theme using props, as we have already used it in GlobalStyles.
+
+GlobalStyle: GlobalStyle is our global style that we want to apply to the whole app. We place it at the top of our React tree and the global styles will be injected when the component is "rendered".
+
+Home: Now we will create a Home component with a theme toggling button and some text to which we will apply some style.
+
+Here, is how our Home.jsx.
+
+```javascript
+import React, { useContext } from "react";
+import { StyledHome } from "../styles/home.style";
+import { ThemeContext } from "styled-components";
+
+export default function Home() {
+  const { theme, setTheme } = useContext(ThemeContext);
+
+  const handleThemeChange = () =>
+    setTheme((state) => (state === "dark" ? "light" : "dark"));
+
+  return (
+    <StyledHome>
+      <h1>Hello World</h1>
+      <h2>This is {theme === "light" ? "Dark" : "Light"} Theme</h2>
+      <button onClick={handleThemeChange}>
+        {theme === "light" ? "Dark" : "Light"}
+      </button>
+    </StyledHome>
+  );
+}
+```
+
+Now we use useContext hook to get the theme and setTheme function from ThemeContext. We will toggle the theme using the handleThemeChange handler. We wrap our whole page inside StyledHome component so that we could apply a style to it. Here is what our home.style.ts file looks like.
+
+```javascript
+import styled from "styled-components";
+
+export const StyledHome = styled.div`
+  h1,
+  h2 {
+    color: ${(props) => props.theme.color};
+  }
+`;
+```
+
+We use theme object to retrieve style properties from props. These properties will change according to the app's current theme. ANd this is what our index.js file looks like.
+
+```javascript
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+
+import App from "./App";
+
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement);
+
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
+```
+
+In index.js we are not doing any styled-components related stuff, this is just normal index.js.
+
+Now our app is ready with a dark and light theme. So if you have any doubts regarding this post or code please let me via Social Media.
