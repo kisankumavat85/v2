@@ -3,12 +3,12 @@ import { FC } from "react";
 import SearchInput from "@/components/UI/SearchInput";
 import Cards from "@/components/Cards";
 import { H1, P } from "@/components/UI/Typography";
-import { getAllPostsMetadata } from "@/utils";
+import { getAllPostsMeta } from "@/utils";
 
 interface Props {}
 
 const BlogPage: FC<Props> = async () => {
-  const posts = await getAllPostsMetadata();
+  const posts = await getAllPostsMeta();
 
   return (
     <div>

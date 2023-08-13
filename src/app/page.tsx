@@ -2,13 +2,13 @@ import Cards from "@/components/Cards";
 import Articles from "@/components/Cards";
 import { H1, P } from "@/components/UI/Typography";
 import { socialLinks } from "@/constants";
-import { getAllPostsMetadata } from "@/utils";
+import { getAllPostsMeta } from "@/utils";
 
 // Removes email href
 socialLinks.pop();
 
 export default async function Home() {
-  const posts = await getAllPostsMetadata();
+  const posts = await getAllPostsMeta();
 
   return (
     <div>
