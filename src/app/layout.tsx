@@ -1,11 +1,11 @@
-import { Chivo_Mono } from "next/font/google";
+import { Roboto_Mono } from "next/font/google";
 import type { Metadata } from "next";
 import "./globals.css";
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-const chivoMono = Chivo_Mono({
+const robotoMono = Roboto_Mono({
   weight: ["300", "400", "500", "700"],
   style: ["normal", "italic"],
   subsets: ["latin"],
@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`max-w-3xl px-6 mx-auto bg-secondary text-white ${chivoMono.variable} font-mono`}
+        className={`max-w-3xl px-6 mx-auto bg-secondary text-white ${robotoMono.variable} font-mono`}
       >
         <Header />
         <main>{children}</main>

@@ -9,12 +9,13 @@ import { navLinks } from "@/constants";
 
 const Navigation = () => {
   const pathname = usePathname();
+  const path = `/${pathname.split("/")[1]}`;
 
   return (
     <nav role="navigation" className="h-20 flex items-center">
       <ul className="flex gap-8">
         {navLinks.map((link) => {
-          const isActive = pathname === link.href;
+          const isActive = path === link.href;
 
           return (
             <li key={link.name}>
