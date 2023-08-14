@@ -20,14 +20,12 @@ const Image = async ({ params }: { params: { slug: string } }) => {
       <div
         style={{
           fontSize: 128,
-          background:
-            "linear-gradient(190deg, rgba(50,189,191,1) 0%, rgba(63,54,212,1) 100%);",
+          background: "black",
           width: "100%",
           height: "100%",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          color: "white",
         }}
       >
         {title}
