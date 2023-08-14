@@ -28,6 +28,12 @@ const getPost = async (fileName: string) => {
   return compailedMdx;
 };
 
+export const getPostMeta = async (slug: string) => {
+  const fileName = slug + ".mdx";
+  const { frontmatter } = await getPost(fileName);
+  return frontmatter;
+};
+
 export const getAllPostsMeta = async () => {
   const files = fs.readdirSync(POSTS_FOLDER_PATH);
 
