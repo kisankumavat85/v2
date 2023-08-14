@@ -26,6 +26,7 @@ const Image = async ({ params }: { params: { slug: string } }) => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          color: "white",
         }}
       >
         {title}
