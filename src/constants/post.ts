@@ -1,4 +1,4 @@
-export const slugMap: { [key: string]: string } = {
+export const postSlugMap: { [key: string]: string } = {
   "records-and-tuples-new-data-structure-in-javascript":
     "Records and Tuples – New data structure in JavaScript",
   "themes-in-styled-components-using-theme-provider-and-theme-context":
