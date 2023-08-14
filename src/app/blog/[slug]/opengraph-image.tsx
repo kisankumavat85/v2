@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/server";
 import { getPostMeta } from "@/utils";
+import { slugMap } from "@/constants/post";
 
 // Route segment config
 export const runtime = "edge";
@@ -12,7 +13,7 @@ export const size = {
 };
 
 const Image = async ({ params }: { params: { slug: string } }) => {
-  const { title } = await getPostMeta(params.slug);
+  const title = slugMap?.[params.slug];
   return new ImageResponse(
     (
       // ImageResponse JSX element
