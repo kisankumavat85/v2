@@ -3,13 +3,31 @@ import { Calendar } from "react-feather";
 import "highlight.js/styles/atom-one-dark.css";
 
 import { H1 } from "@/components/UI/Typography";
-import { getAllPostsMeta, getPostBySlug } from "@/utils";
+import { getPostBySlug, getPostMeta } from "@/utils";
+import { Metadata } from "next";
 
 interface Props {
   params: {
     slug: string;
   };
 }
+
+export const generateMetadata = async ({
+  params,
+}: Props): Promise<Metadata> => {
+  const meta = await getPostMeta(params.slug);
+  return {
+    title: meta.title,
+    description: meta.excerpt,
+    authors: { name: "Kisan Kumavat" },
+    openGraph: {
+      title: meta.title,
+      description: meta.excerpt,
+      siteName: "Kisan Kumavat",
+      authors: ["Kisan Kumavat"],
+    },
+  };
+};
 
 const ArticlePage: FC<Props> = async (props) => {
   const { params } = props;
