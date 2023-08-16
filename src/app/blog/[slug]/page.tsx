@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Calendar } from "react-feather";
-import "highlight.js/styles/atom-one-dark.css";
+import "highlight.js/styles/github-dark.css";
 
 import { H1 } from "@/components/UI/Typography";
 import { getPostBySlug, getPostMeta } from "@/utils";

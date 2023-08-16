@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/server";
-import { postSlugMap } from "@/constants/post";
+import { postSlugMap } from "@/constants/post-constants";
 
 // Route segment config
 export const runtime = "edge";
@@ -18,7 +18,7 @@ const Image = async ({ params }: { params: { slug: string } }) => {
       // ImageResponse JSX element
       <div
         style={{
-          fontSize: 42,
+          fontSize: 64,
           background: "linear-gradient(to right, #000000, #434343)",
           width: "100%",
           height: "100%",

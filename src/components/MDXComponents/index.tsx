@@ -36,7 +36,7 @@ export const components: Components = {
   pre: ({ children, ...rest }) => (
     <Component
       as="pre"
-      className="mb-4 text-base border-0 overflow-hidden rounded-lg"
+      className="mb-4 text-base overflow-hidden rounded-lg border border-line"
       {...rest}
     >
       {children}
