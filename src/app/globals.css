@@ -37,7 +37,7 @@
   }
 
   .charcoal-theme {
-    --color-primary: hsl(0, 50%, 90%);
+    --color-primary: hsl(42, 97%, 60%);
     --color-secondary: hsl(221, 24%, 28%);
     --color-bg: hsl(221, 24%, 32%);
     --color-bg-hover: hsl(221, 24%, 38%);
@@ -45,7 +45,7 @@
   }
 
   .theme-x {
-    --color-primary: hsl(19, 100%, 74%);
+    --color-primary: hsl(80, 97%, 65%);
     --color-secondary: hsl(330, 100%, 12%);
     --color-bg: hsl(330, 100%, 16%);
     --color-bg-hover: hsl(330, 100%, 18%);
