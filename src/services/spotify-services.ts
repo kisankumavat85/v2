@@ -21,6 +21,7 @@ const getAccessToken = async () => {
         Authorization: `Basic ${basic}`,
       },
       body: `grant_type=refresh_token&refresh_token=${SPOTIFY_REFRESH_TOKEN}`,
+      cache: "no-store",
     });
 
     if (!response.ok) {
@@ -28,6 +29,7 @@ const getAccessToken = async () => {
     }
 
     const data = await response.json();
+    console.log("------ data", data);
     return data.access_token;
   } catch (error) {
     console.error("error", error);
@@ -48,6 +50,7 @@ export const getSpotifyTopItems = async (
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
+      cache: "no-store",
     });
 
     if (!response.ok) {
@@ -56,6 +59,28 @@ export const getSpotifyTopItems = async (
 
     const data = await response.json();
     return data.items as Track[] | Artist[];
+  } catch (error) {
+    console.error("error", error);
+    throw error;
+  }
+};
+
+export const getCurrentlyPlayingTrack = async () => {
+  try {
+    const accessToken = await getAccessToken();
+
+    const response = await fetch(`${baseUrl}/me/player/currently-playing`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch currently playing Track");
+    }
+
+    const data = await response.json();
+    return data.item;
   } catch (error) {
     console.error("error", error);
     throw error;

@@ -8,7 +8,7 @@ import { getAllPostsMeta } from "@/utils";
 interface Props {}
 
 const BlogPage: FC<Props> = async () => {
-  const posts = await getAllPostsMeta();
+  let posts = (await getAllPostsMeta()).filter((p) => p.isCompleted);
 
   return (
     <div>
