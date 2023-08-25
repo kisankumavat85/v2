@@ -10,7 +10,7 @@ export const H1: FC<Props> = (props) => {
   return (
     <h1
       className={twMerge(
-        "text-5xl md:text-6xl text-primary font-bold mb-4",
+        "text-5xl md:text-6xl text-primary font-bold mb-4 ",
         props.className
       )}
     >
