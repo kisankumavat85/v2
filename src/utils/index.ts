@@ -37,13 +37,17 @@ export const getPostMeta = async (slug: string) => {
 export const getAllPostsMeta = async () => {
   const files = fs.readdirSync(POSTS_FOLDER_PATH);
 
-  const postsMeta = await Promise.all(
+  let postsMeta = await Promise.all(
     files.map(async (fileName) => {
       const slug = fileName.replace(".mdx", "");
       const { frontmatter } = await getPost(fileName);
       return { slug, ...frontmatter };
     })
   );
+
+  if (process.env.NODE_ENV !== "development") {
+    postsMeta = postsMeta.filter((p) => p.isCompleted);
+  }
 
   return postsMeta;
 };
