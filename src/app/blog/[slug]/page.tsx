@@ -1,10 +1,12 @@
 import { FC } from "react";
 import { Calendar } from "react-feather";
+import { Metadata } from "next";
 import "highlight.js/styles/github-dark.css";
 
-import { H1 } from "@/components/UI/Typography";
 import { getPostBySlug, getPostMeta } from "@/utils";
-import { Metadata } from "next";
+import { getArticleViews } from "@/services/metrics-services";
+import { H1 } from "@/components/UI/Typography";
+import Views from "@/components/Views";
 
 interface Props {
   params: {
@@ -32,6 +34,7 @@ export const generateMetadata = async ({
 const ArticlePage: FC<Props> = async (props) => {
   const { params } = props;
   const post = await getPostBySlug(params.slug);
+  const viewsData = await getArticleViews(params.slug);
 
   return (
     <div className="mb-16">
@@ -42,7 +45,7 @@ const ArticlePage: FC<Props> = async (props) => {
             <time>{post.frontmatter.date}</time>
           </span>
           <span>|</span>
-          <span>{post.frontmatter.readingTime} mins read</span>
+          <Views slug={params.slug} count={viewsData?.count} />
         </div>
         <H1 className="md:text-5xl text-3xl tracking-tight">
           {post.frontmatter.title}
