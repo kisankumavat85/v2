@@ -1,22 +1,39 @@
 "use server";
 
-import { URL } from "@/constants/env-constants";
+import { prisma } from "@/lib/prisma-lib";
 
 export const incrementArticleView = async (slug: string) => {
   try {
-    const response = await fetch(`${URL}/api/metrics?slug=${slug}`, {
-      method: "POST",
-      cache: "no-store",
+    const post = await prisma.view.findFirst({
+      where: {
+        slug,
+      },
     });
 
-    if (!response.ok) {
-      throw new Error("Could not increment views!");
+    if (!post) {
+      await prisma.view.create({
+        data: {
+          slug,
+          count: 1,
+        },
+      });
+
+      return;
     }
 
-    const data = await response.json();
+    await prisma.view.update({
+      where: {
+        id: post.id,
+      },
+      data: {
+        count: {
+          increment: 1,
+        },
+      },
+    });
 
-    return data;
+    return;
   } catch (error) {
-    console.error(error);
+    console.log("error", error);
   }
 };

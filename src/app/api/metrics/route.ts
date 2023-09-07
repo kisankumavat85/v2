@@ -8,7 +8,7 @@ export const GET = async (req: Request) => {
     const slug = searchParams.get("slug");
 
     if (!slug) {
-      return new NextResponse(JSON.stringify({ message: "Slug not found" }), {
+      return new NextResponse(JSON.stringify({ message: "Post not found" }), {
         status: 404,
       });
     }

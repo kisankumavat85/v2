@@ -1,8 +1,9 @@
-import { URL } from "@/constants/env-constants";
-
 export const getArticleViews = async (slug: string) => {
   try {
-    const response = await fetch(`${URL}/api/metrics?slug=${slug}`, {
+    const url = process.env.NEXT_PUBLIC_VERCEL_URL
+      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+      : process.env.URL;
+    const response = await fetch(`${url}/api/metrics?slug=${slug}`, {
       method: "GET",
       cache: "no-store",
     });
