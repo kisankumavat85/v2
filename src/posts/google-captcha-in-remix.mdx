@@ -1,0 +1,26 @@
+---
+title: "Google captcha in Remix.js"
+date: "Oct 11, 2023"
+excerpt: "In this article, we are going to know/learn about a new primitive data structure Record and Tuple."
+coverImage: "/images/posts/records-and-tuples-new-data-structure-in-javascript.webp"
+readingTime: "2"
+isFeatured: true
+isCompleted: true
+---
+
+## Intro
+
+When I developed the contact form for one of my company's client, I did not think of
+any kind of spam prevention mechanism. But after the app got into production, We received lots of spam mails and most of them were by boats There were lots of spam
+mails mostly by bots. We were getting 30-40 mails daily and overall we got 1000+ spam mails.
+
+I googled 'How to prevent bot attack on Contact form'. There was an easy solution known as "Honeypot".
+In Honeypot approach you add hidden fields to the form. Those fields will not be visible to the
+users so they can not be filled by users but bots can fill them. So this way while submitting the form
+we can check those hidden form's values and if the value is empty then the form is submitted by human and if there is any other value than its filled by bots.
+That's how you can use Honeypot trap. But it did not work for me well because more advanced spammers and bots have learned to get around it.
+To overcome this problem I used Google ReCaptcha.
+
+## Google ReCaptcha v2
+
+I decided to use v2 of the Google ReCaptcha. You can register your sit [here](https://www.google.com/u/0/recaptcha/admin/create).

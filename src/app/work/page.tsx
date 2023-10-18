@@ -13,7 +13,7 @@ const WorkPage: FC<Props> = () => {
       <section className="mb-14">
         <H1>Work</H1>
         <P>
-          I have spent two years honking my skills. My passion for bulding web
+          I have spent two years honing my skills. My passion for bulding web
           applications and user interfaces led me to improve my ReactJS game,
           allowing me to create dynamic applications. I have also hands on
           experience with NodeJS, ExpressJS and MongoDB.
