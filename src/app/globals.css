@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
+  html[data-theme="default"] {
     --color-primary: hsl(28, 100%, 58%);
     --color-primary-2: hsl(28, 100%, 30%);
     --color-secondary: hsl(0, 0%, 0%);
@@ -12,7 +12,7 @@
     --color-line: hsl(0, 0%, 20%);
   }
 
-  .lavender {
+  html[data-theme="lavender"] {
     --color-primary: hsl(301, 100%, 82%);
     --color-secondary: rgb(25, 24, 37);
     --color-bg: hsl(245, 21%, 17%);
@@ -20,15 +20,15 @@
     --color-line: hsl(245, 21%, 30%);
   }
 
-  .charleston-green {
-    --color-primary: hsl(43, 100%, 94%);
+  html[data-theme="charleston-green"] {
+    --color-primary: hsl(43, 84%, 50%);
     --color-secondary: #28292a;
     --color-bg: hsl(210, 3%, 22%);
     --color-bg-hover: hsl(210, 3%, 28%);
     --color-line: hsl(210, 3%, 33%);
   }
 
-  .raisin-black {
+  html[data-theme="raisin-black"] {
     --color-primary: hsl(15, 64%, 77%);
     --color-secondary: #212121;
     --color-bg: hsl(0, 0%, 17%);
@@ -36,7 +36,7 @@
     --color-line: hsl(0, 0%, 27%);
   }
 
-  .charcoal-theme {
+  html[data-theme="charcoal-theme"] {
     --color-primary: hsl(42, 97%, 60%);
     --color-secondary: hsl(221, 24%, 28%);
     --color-bg: hsl(221, 24%, 32%);
@@ -44,7 +44,7 @@
     --color-line: hsl(221, 24%, 42%);
   }
 
-  .theme-x {
+  html[data-theme="theme-x"] {
     --color-primary: hsl(80, 97%, 65%);
     --color-secondary: hsl(330, 100%, 12%);
     --color-bg: hsl(330, 100%, 16%);
@@ -52,7 +52,7 @@
     --color-line: hsl(330, 100%, 30%);
   }
 
-  .crayola-yellow {
+  html[data-theme="crayola-yellow"] {
     --color-primary: rgb(247, 232, 135);
     --color-secondary: hsl(230, 32%, 21%);
     --color-bg: hsl(230, 32%, 26%);

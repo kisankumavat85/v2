@@ -122,3 +122,13 @@ export const books = [
     language: "English",
   },
 ];
+
+export const themes = [
+  "default",
+  "lavender",
+  "charleston-green",
+  "raisin-black",
+  "charcoal-theme",
+  "theme-x",
+  "crayola-yellow",
+];

@@ -5,15 +5,26 @@ import { usePathname } from "next/navigation";
 import { twMerge } from "tailwind-merge";
 import clsx from "clsx";
 
-import { navLinks } from "@/constants";
+import ThemeIcon from "@/components/Icons/ThemeIcon";
+import { navLinks, themes } from "@/constants";
 
 const Navigation = () => {
   const pathname = usePathname();
   const path = `/${pathname.split("/")[1]}`;
 
+  const handleThemeClick = () => {
+    const html = document.querySelector("html");
+    const currentTheme = html?.getAttribute(
+      "data-theme"
+    ) as (typeof themes)[number];
+    const currentIndex = themes.indexOf(currentTheme) ?? 0;
+    let newIndex = currentIndex == themes.length - 1 ? 0 : currentIndex + 1;
+    html?.setAttribute("data-theme", themes[newIndex]);
+  };
+
   return (
-    <nav role="navigation" className="h-20 flex items-center">
-      <ul className="flex gap-8">
+    <nav role="navigation" className="h-20 flex items-center justify-between">
+      <ul className="flex gap-5 sm:gap-8">
         {navLinks.map((link) => {
           const isActive = path === link.href;
 
@@ -34,6 +45,12 @@ const Navigation = () => {
           );
         })}
       </ul>
+      <div
+        className="cursor-pointer border-0 rounded-full"
+        onClick={handleThemeClick}
+      >
+        <ThemeIcon />
+      </div>
     </nav>
   );
 };
