@@ -23,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="default">
       <body
         className={`max-w-3xl px-6 mx-auto bg-secondary text-white ${robotoMono.variable} font-mono`}
       >
