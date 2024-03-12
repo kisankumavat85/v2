@@ -1,4 +1,4 @@
-import { ImageResponse } from "next/server";
+import { ImageResponse } from "next/og";
 import { postSlugMap } from "@/constants/post-constants";
 
 // Route segment config

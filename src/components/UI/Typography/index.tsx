@@ -10,7 +10,7 @@ export const H1: FC<Props> = (props) => {
   return (
     <h1
       className={twMerge(
-        "text-5xl md:text-6xl text-primary font-bold mb-4 ",
+        "text-5xl md:text-6xl text-primary font-bold mb-4",
         props.className
       )}
     >
@@ -24,6 +24,14 @@ export const H2: FC<Props> = (props) => {
     <h2 className={twMerge("text-2xl font-medium mb-4", props.className)}>
       {props.children}
     </h2>
+  );
+};
+
+export const H3: FC<Props> = (props) => {
+  return (
+    <h3 className={twMerge("text-xl font-medium mb-4", props.className)}>
+      {props.children}
+    </h3>
   );
 };
 

@@ -8,7 +8,7 @@ import type { Track } from "@/types/spotify";
 
 const SpacePage = async () => {
   const tracks = (await getSpotifyTopItems("tracks", {
-    time_range: "short_term",
+    time_range: "medium_term",
     limit: 5,
   })) as Track[];
 

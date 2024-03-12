@@ -5,22 +5,203 @@ excerpt: "In this article, we are going to know/learn about a new primitive data
 coverImage: "/images/posts/records-and-tuples-new-data-structure-in-javascript.webp"
 readingTime: "2"
 isFeatured: true
-isCompleted: true
+isCompleted: false
 ---
 
 ## Intro
 
-When I developed the contact form for one of my company's client, I did not think of
-any kind of spam prevention mechanism. But after the app got into production, We received lots of spam mails and most of them were by boats There were lots of spam
-mails mostly by bots. We were getting 30-40 mails daily and overall we got 1000+ spam mails.
+When I developed the contact form for one of my company's client, I did not think of any kind of spam prevention mechanism. But after the app got into production, We received lots of spam mails and most of them were by boats There were lots of spam mails mostly by bots. We were getting 30-40 mails daily and overall we got 1000+ spam mails.
 
-I googled 'How to prevent bot attack on Contact form'. There was an easy solution known as "Honeypot".
-In Honeypot approach you add hidden fields to the form. Those fields will not be visible to the
-users so they can not be filled by users but bots can fill them. So this way while submitting the form
-we can check those hidden form's values and if the value is empty then the form is submitted by human and if there is any other value than its filled by bots.
-That's how you can use Honeypot trap. But it did not work for me well because more advanced spammers and bots have learned to get around it.
-To overcome this problem I used Google ReCaptcha.
+I googled "How to prevent bot attack on Contact form". There was an easy solution known as "Honeypot" trap.
+
+In Honeypot approach you add hidden fields to the form. Those fields will not be visible to the users so they can not be filled by users but bots can fill them. So this way while submitting the form we can check those hidden form's values and if the value is empty then the form is submitted by human and if there is any other value than its filled by bots.
+
+That's how you can use Honeypot trap. But it did not work well because more advanced spammers and bots have learned to get around it. To overcome this problem I used Google ReCaptcha.
 
 ## Google ReCaptcha v2
 
-I decided to use v2 of the Google ReCaptcha. You can register your sit [here](https://www.google.com/u/0/recaptcha/admin/create) for .
+I decided to use v2 of the Google ReCaptcha and in this article we will use the same. You can register your site [here](https://www.google.com/u/0/recaptcha/admin/create) for free. Fill in label, select Challenge (v2) then select "I'm not a robot" Checkbox. Then add Domains, for development you have to add 'localhost'. After submitting the form there will be site key and secret key, Copy those and save for latter use.
+
+### Step 1: Create Remix app
+
+You can create remix app with the help of the following command or you can clone this example repo from [GitHub]().
+
+```text
+npx create-remix@latest
+```
+
+### Step 2: Install dependencies
+
+Now lets install required dependencies.
+
+```text
+npm i react-google-recaptcha
+npm i -D @types/react-google-recaptcha
+```
+
+### Step 3: Add environment variables
+
+We will add the site key and secret key we got from google recaptcha dashboard into the `.env` file as following, replace `xxx` with actual values.
+
+```text
+RECAPTCHA_SITE_KEY=xxx
+RECAPTCHA_SECRET_KEY=xxx
+```
+
+### Step 4: Build form
+
+Now we will build form with some fields like name, email and a ReCAPTCHA field from `react-google-recaptcha` library as below.
+
+```tsx
+// app/components/Form.tsx
+
+import { useEffect, useRef } from "react";
+import { Form, useActionData, useLoaderData } from "@remix-run/react";
+import ReCAPTCHA from "react-google-recaptcha";
+
+function FormComponent() {
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+  const loaderData = useLoaderData<LoaderData>();
+  const actionData = useActionData<ActionData>();
+
+  useEffect(() => {
+    if (actionData?.success) {
+      if (formRef.current) formRef.current.reset();
+      if (recaptchaRef.current) recaptchaRef.current?.reset();
+    }
+    if (recaptchaRef.current && actionData?.errors?.captcha)
+      recaptchaRef.current?.reset();
+  }, [actionData]);
+
+  return (
+    <Form method="post" ref={formRef}>
+      <label htmlFor="name">Name:</label>
+      <input type="text" id="name" name="name" required />
+
+      <label htmlFor="email">Email:</label>
+      <input type="email" id="email" name="email" required />
+
+      <ReCAPTCHA
+        sitekey={loaderData.ENV.RECAPTCHA_SITE_KEY}
+        ref={recaptchaRef}
+      />
+      {actionData?.errors?.captcha && (
+        <p className="error-message">{actionData?.errors?.captcha}</p>
+      )}
+
+      <input type="submit" value="Submit" />
+    </Form>
+  );
+}
+
+export default FormComponent;
+```
+
+Let's use the form in home route.
+```tsx
+// app/routes/_index/index.tsx
+
+import Form from "~/components/Form";
+
+const HomeRoute = () => {
+  return (
+    <div>
+      <Form />
+    </div>
+  );
+};
+
+export default HomeRoute;
+```
+
+### Step 5: Create loader and links functions
+
+In the form we are using `useLoaderData` hook to access the `RECAPTCHA_SITE_KEY` env variable. So lets create loader function inside home route that will return the site key we got from google recaptcha dashboard. We will also link the normal css styles using `links` function. You can get the CSS form the [GitHub]() or you can do ChatGPT (like I did 😀).
+
+```tsx
+// app/routes/_index/index.tsx
+
+import styles from "~/styles/index.css";
+
+export const links: LinksFunction = () => {
+  return [{ rel: "stylesheet", href: styles }];
+};
+
+export const loader: LoaderFunction = () => {
+  const RECAPTCHA_SITE_KEY = `${process.env.RECAPTCHA_SITE_KEY}`;
+  return {
+    ENV: {
+      RECAPTCHA_SITE_KEY,
+    },
+  };
+};
+```
+
+### Step 6: Create action function & verify token
+
+Whenever the form is submitted we can get the token generated by `<ReCAPTCHA>` component as form value as below.
+
+```ts
+// app/routes/_index/index.tsx
+
+import { validateCaptcha } from "~/lib/google-recaptcha";
+
+export const action: ActionFunction = async ({ request }) => {
+  const formData = await request.formData();
+  const values = Object.fromEntries(formData);
+
+  const errors: any = {};
+
+  if (!values?.["g-recaptcha-response"]) {
+    errors.captcha = "Please check captcha box";
+    return json({ success: false, errors });
+  }
+
+  try {
+    await validateCaptcha(values?.["g-recaptcha-response"]);
+  } catch (error) {
+    errors.captcha = "Something went wrong, Re-validate captcha";
+    return json({ success: false, errors });
+  }
+
+  // Do whatever you want to do with your form values...
+
+  return json({
+    success: true,
+    message: "Form submission successful!",
+  });
+};
+```
+
+To verify the token let's create `validateCaptcha` function as below.
+
+```ts
+// app/lib/google-recaptcha.ts
+
+export const validateCaptcha = async (token: FormDataEntryValue | null) => {
+  const ReCaptchaURL = "https://www.google.com/recaptcha/api/siteverify";
+
+  const captchaResponse = await fetch(ReCaptchaURL, {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${token}`,
+  });
+
+  const res = await captchaResponse.json();
+
+  if (res.success) {
+    return "success";
+  } else {
+    throw new Error("Failed captcha");
+  }
+};
+
+```
+
+If you have followed the all steps and used the styles provided in the GitHub then your final output should look like this as below
+
+// TODO: Add image
+// TODO: Add links
+
+Congratulation, You have learnt to add google recaptcha in Remix.js app.

@@ -1,6 +1,7 @@
 "use client";
 
-import { FC, useEffect, useRef } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { FC, useEffect, useRef, useState } from "react";
 import { Search } from "react-feather";
 
 interface Props {}
@@ -8,6 +9,9 @@ interface Props {}
 const SearchInput: FC<Props> = (props) => {
   const {} = props;
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -35,6 +39,12 @@ const SearchInput: FC<Props> = (props) => {
         name="search"
         placeholder={`Press "/" to focus`}
         ref={inputRef}
+        value={searchParams.get("query")!}
+        onChange={(e) => {
+          const value = e.target.value.trim();
+
+          router.push(`${pathname}?query=${e.target.value.trim()}`);
+        }}
       />
       <Search size={16} className="absolute top-[28%] left-4" />
     </div>
