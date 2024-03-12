@@ -15,7 +15,7 @@ const getFilePath = (fileName: string) => {
 const getPost = async (fileName: string) => {
   const filePath = getFilePath(fileName);
   const source = fs.readFileSync(filePath);
-  const compailedMdx = await compileMDX<Frontmatter>({
+  const compiledMdx = await compileMDX<Frontmatter>({
     source,
     options: {
       parseFrontmatter: true,
@@ -25,7 +25,7 @@ const getPost = async (fileName: string) => {
     },
     components: { ...components },
   });
-  return compailedMdx;
+  return compiledMdx;
 };
 
 export const getPostMeta = async (slug: string) => {
@@ -48,6 +48,12 @@ export const getAllPostsMeta = async () => {
   if (process.env.NODE_ENV !== "development") {
     postsMeta = postsMeta.filter((p) => p.isCompleted);
   }
+
+  postsMeta = postsMeta.sort((a, b) => {
+    if (new Date(a.date).getTime() < new Date(b.date).getTime()) return 1;
+    if (new Date(a.date).getTime() > new Date(b.date).getTime()) return -1;
+    return 0;
+  });
 
   return postsMeta;
 };
