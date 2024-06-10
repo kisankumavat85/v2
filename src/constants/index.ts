@@ -53,7 +53,7 @@ export const socialLinks = [
 export const experience = [
   {
     startDate: "Feb 2023",
-    endDate: "Present",
+    endDate: "Mar 2024",
     companyName: "Fullness Web Soluctions",
     companyWebsite: "https://www.fullness.io/",
     position: "Software Engineer",
