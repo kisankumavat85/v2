@@ -34,8 +34,7 @@ const Navigation = () => {
                 href={link.href}
                 className={twMerge(
                   clsx("text-white opacity-60 hover:opacity-80", {
-                    "opacity-100 font-medium border-b-2 border-dashed border-primary":
-                      isActive,
+                    "opacity-100 font-medium primary-border": isActive,
                   })
                 )}
               >

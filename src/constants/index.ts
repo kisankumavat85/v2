@@ -132,3 +132,55 @@ export const themes = [
   "theme-x",
   "crayola-yellow",
 ];
+
+export const projects = {
+  work: [
+    {
+      name: "Cimet",
+      description:
+        "CIMET is a leading provider of white-label comparison platforms designed to help customers find the best deals on energy, solar, broadband, and mobile services",
+      stack: ["Remix.js", "Keystone.js", "Tailwind CSS"],
+      href: "https://www.cimet.com.au/",
+      image: "/cimet.webp",
+    },
+    {
+      name: "Lnk8",
+      description:
+        "Lnk8 is a URL shortener that allows you to transform long URLs into shorter, more manageable links.",
+      stack: [
+        "Next.js",
+        "Keystone.js",
+        "Styled Components",
+        "Cloudflare Workers",
+      ],
+      href: "https://lnk8.co/",
+      image: "/lnk8.webp",
+    },
+    {
+      name: "Fullness.io",
+      description:
+        "The best utility comparison and management system that you can provide to your customers.",
+      stack: ["Remix.js", "Keystone.js", "Styled Components", "AWS S3"],
+      href: "https://www.fullness.io/",
+      image: "/fullness.webp",
+    },
+    {
+      name: "Upsyz",
+      description:
+        "Upsyz is a content creation and marketing company that specializes in providing high-quality, engaging content crafted by expert writers.",
+      stack: ["Remix.js", "Keystone.js", "Styled Components", "AWS S3"],
+      href: "https://www.fullness.io/",
+      image: "/upsyz.webp",
+    },
+  ],
+  personal: [
+    {
+      name: "Small link",
+      description:
+        "Small link is a simple URL shorting web app. Where you can see analytics like clicks, clicks by time, countries, browsers, OS.",
+      stack: ["Next.js", "Cloudflare Workers", "Tailwind CSS", "Next Auth"],
+      href: "https://yslp.vercel.app/",
+      image: "/small-link.webp",
+    },
+  ],
+};
