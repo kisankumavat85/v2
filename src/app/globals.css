@@ -59,6 +59,10 @@
     --color-bg-hover: hsl(230, 32%, 36%);
     --color-line: hsl(230, 32%, 40%);
   }
+
+  .primary-border {
+    @apply border-b-2 border-dashed border-primary;
+  }
 }
 
 ::-webkit-scrollbar {
