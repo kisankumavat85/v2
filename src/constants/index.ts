@@ -65,7 +65,7 @@ export const experience = [
       "Vite",
       "Redux",
       "React Query/TanStack Query",
-      "Mterial UI (MUI)",
+      "Material UI (MUI)",
       "Okta SDK",
       "React Hook Form",
       "Zod"
@@ -78,7 +78,7 @@ export const experience = [
     companyWebsite: "https://www.fullness.io/",
     position: "Software Engineer",
     description:
-      "Integrated multiple new features in KeystoneJS for client to 2x their CMS workflow. Build multiple landing pages for new agencies. Revamped the company's website using RemixJS and Styled components.",
+      "Integrated multiple new features in KeystoneJS for the client to 2x their CMS workflow. Build multiple landing pages for new agencies. Revamped the company's website using RemixJS and Styled components.",
     tech: [
       "ReactJS",
       "RemixJS",
