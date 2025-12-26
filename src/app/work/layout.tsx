@@ -15,9 +15,9 @@ const Layout = (props: Props) => {
       <section className="mb-14">
         <H1>Work</H1>
         <P>
-          I have spent two years honing my skills. My passion for building web
+          I have spent four years honing my skills. My passion for building web
           applications and user interfaces led me to improve my ReactJS game,
-          allowing me to create dynamic applications. I have also hands on
+          allowing me to create dynamic applications. I have also hands-on
           experience with NodeJS, ExpressJS and MongoDB.
         </P>
       </section>
