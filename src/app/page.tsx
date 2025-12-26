@@ -19,9 +19,9 @@ export default async function Home() {
           with a flair for crafting immersive web experiences.
         </P>
         <P>
-          I have done engineering degree in IT, and have 2 years of industry
-          experience building web applications. I specialize in React, and have
-          experience working with Typescript, Next.js, Remix.js and Express.js.
+          I have done an engineering degree in IT, and have 4 years of industry
+          experience building web applications. I specialise in React, TypeScript and have
+          experience working with Next.js, Remix.js and Express.js.
         </P>
         <div className="flex items-center gap-1">
           <span>Social Links:</span>
