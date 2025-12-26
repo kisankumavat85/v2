@@ -52,6 +52,26 @@ export const socialLinks = [
 
 export const experience = [
   {
+    startDate: "July 2024",
+    endDate: "Present",
+    companyName: "Appfolio - LiveEasy IND",
+    companyWebsite: "https://www.liveeasy.com/",
+    position: "Frontend Engineer",
+    description:
+      "A B2B2C PropTech platform providing white-labeled home management and concierge services to real estate enterprises. Recently acquired by AppFolio",
+    tech: [
+      "React",
+      "TypeScript",
+      "Vite",
+      "Redux",
+      "React Query/TanStack Query",
+      "Mterial UI (MUI)",
+      "Okta SDK",
+      "React Hook Form",
+      "Zod"
+    ],
+  },
+  {
     startDate: "Feb 2023",
     endDate: "Mar 2024",
     companyName: "Fullness Web Soluctions",
