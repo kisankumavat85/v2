@@ -58,7 +58,7 @@ export const experience = [
     companyWebsite: "https://www.liveeasy.com/",
     position: "Frontend Engineer",
     description:
-      "A B2B2C PropTech platform providing white-labeled home management and concierge services to real estate enterprises. Recently acquired by AppFolio",
+      "Developed and maintained the frontend architecture for three distinct platforms: a consumer-facing app, an internal concierge tool, and a B2B agent dashboard. Successfully delivered a brand-new Agent Dashboard and a revamped Concierge platform, transitioning the stack to Vite and Functional Components. improved system scalability and security by integrating Okta SSO and optimising state management with React Query",
     tech: [
       "React",
       "TypeScript",
